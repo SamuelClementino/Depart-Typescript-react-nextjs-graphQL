@@ -39,7 +39,7 @@ export function PrimaryInputWSearchIcon(props: InputProps){
     return (
         <InputContainer>
             <PrimaryInput 
-                onChange={(event) => props.handleChange(event.target.value)} 
+                onChange={(event: { target: { value: string; }; }) => props.handleChange(event.target.value)} 
                 {...props}
             />
             <SearchIcon/>
