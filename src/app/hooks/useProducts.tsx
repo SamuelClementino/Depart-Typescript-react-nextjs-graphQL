@@ -1,10 +1,10 @@
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import axios, { AxiosPromise } from "axios";
 import { useFilter } from "./useFilter";
 import { useDeferredValue } from "react";
-import { ProductsFetchResponse } from "../types/products-response";
 import { mountQuery } from "../ultil/get-category-by-type-ts";
+import { ProductsFetchResponse } from "../types/products-response";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
@@ -18,7 +18,8 @@ export function useProducts(){
     const query = mountQuery(type, priority)
     const { data } = useQuery({
       queryFn: () => fetcher(query),
-      queryKey: ['products', type, priority]
+      queryKey: ['products', type, priority],
+      staleTime: 1000 * 60 * 1
     })
 
     const products =  data?.data?.data?.allProducts
